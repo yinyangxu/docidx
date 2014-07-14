@@ -1,0 +1,5 @@
+Whoosh
+Flask
+Jinja2>=2.7
+html2text
+dulwich

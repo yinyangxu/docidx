@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <title>Search</title>
+</head>
+
+<body>
+  <form method="GET" action="">
+    <input name="q" value="{{ term }}">
+    <input type="submit" value="Search" />
+  </form>
+
+{% if results %}
+<div>Found {{ results.estimated_min_length() }} in {{ results.runtime }} seconds.</div>
+
+{% for hit in page %}
+<div><a href="https://gitlab.xxx.xxx.com/{{ hit["repo"] }}/blob/{{ hit["filename"] }}">{{ hit["filename"] }}</a></div>
+<div>{{ hit.highlights("content")|safe }}</div>
+<div>{{ hit["repo"] }}: {{ hit["ref"] }}</div>
+{% endfor %}
+
+<br />
+<div>
+{% for p, n in pages %}
+{% if p == pagenum %}
+<span>{{ pagenum }}</span>
+{% else %}
+<a href="{{ request.path }}?{{ dict(q=term, p=p)|urlencode }}">{{ n }}</a>
+{% endif %}
+{% endfor %}
+</div>
+
+{% endif %}
+
+</body>
+</html>

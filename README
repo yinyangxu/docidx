@@ -1,0 +1,11 @@
+docidx
+
+Making searching docs from gitlab easily.
+
+$ virtualenv --system-site-packages dev_env
+$ . dev_env/bin/activate
+(dev_env)$ pip install -r requirements.txt
+(dev_env)$ bash create.sh
+(dev_env)$ python wsgi.py
+$ firefox 'http://127.0.0.1:9090'
+
